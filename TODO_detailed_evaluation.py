@@ -1,5 +1,23 @@
 #-> LSTM was evaluated on test data, so we calculate precision, recall and F1 based on the results on the test data
 
+from model.data_loader import DataLoader
+from collections import Counter
+import spacy
+import textacy
+from spacy import displacy
+import pandas as pd
+import numpy as np
+from wordfreq import word_frequency
+from wordfreq import zipf_frequency
+import matplotlib.pyplot as plt
+import random
+import os
+from scipy.stats import pearsonr
+import sklearn
+import json
+from TODO_baselines import random_baseline, majority_baseline, length_baseline, frequency_baseline
+
+cwd = os.getcwd()
 
 
 def get_lstm_predictions(lstm_output):
@@ -18,6 +36,32 @@ def get_lstm_predictions(lstm_output):
 
 if __name__ == '__main__':
     print("#######################  TASK 12")
+
+
+    dir_path = cwd
+    train_path = dir_path + "/data/preprocessed/train/"
+    dev_path = dir_path + "/data/preprocessed/val/"          #changed from "/dev/" to "/val/" because there exists no "dev" folder
+    test_path = dir_path + "/data/preprocessed/test/"
+
+    # Note: this loads all instances into memory. If you work with bigger files in the future, use an iterator instead.
+
+    with open(train_path + "sentences.txt") as sent_file:
+        train_sentences = sent_file.readlines()
+
+    with open(train_path + "labels.txt") as label_file:
+        train_labels = label_file.readlines()
+
+    with open(dev_path + "sentences.txt") as dev_file:
+        dev_sentences = dev_file.readlines()
+
+    with open(dev_path + "labels.txt") as dev_label_file:       #changed from "train_path" to "dev_path"
+        dev_labels = dev_label_file.readlines()
+
+    with open(test_path + "sentences.txt") as testfile:
+        testinput = testfile.readlines()
+
+    with open(test_path + "labels.txt") as test_label_file:
+        testlabels = test_label_file.readlines()
     with open(cwd + "/data/preprocessed/test/labels.txt") as test_label_file:
         testlabels = test_label_file.readlines()
 

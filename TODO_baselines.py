@@ -5,6 +5,22 @@
 # Frequency baseline: determines the class based on a frequency threshold
 
 from model.data_loader import DataLoader
+from collections import Counter
+import spacy
+import textacy
+from spacy import displacy
+import pandas as pd
+import numpy as np
+from wordfreq import word_frequency
+from wordfreq import zipf_frequency
+import matplotlib.pyplot as plt
+import random
+import os
+from scipy.stats import pearsonr
+import sklearn
+import json
+
+cwd = os.getcwd()
 
 print("#######################  TASK 10")
 # Each baseline returns predictions for the test data. The length and frequency baselines determine a threshold using the development data.
