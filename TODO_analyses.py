@@ -13,7 +13,7 @@ from scipy.stats import pearsonr
 import sklearn
 import json
 
-print("#######################  LOADING DARA & MODELS")
+print("#######################  LOADING DATA & MODELS")
 
 # Loading data and Model
 nlp = spacy.load('en_core_web_sm')
